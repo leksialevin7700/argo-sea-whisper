@@ -24,8 +24,8 @@ export const ChatInterface = ({ messages, onSendMessage }: ChatInterfaceProps) =
     onSendMessage(input);
     setInput('');
     
-    // Simulate typing delay
-    setTimeout(() => setIsTyping(false), 2000);
+    // Simulate realistic processing delay
+    setTimeout(() => setIsTyping(false), 1500 + Math.random() * 1000);
   };
 
   useEffect(() => {

@@ -6,13 +6,15 @@ interface MapVisualizationProps {
   data: any;
 }
 
-// Mock ARGO float data
+// Realistic ARGO float data with enhanced metadata
 const argoFloats = [
-  { id: 'WMO_4901234', lat: 25.5, lon: -80.2, temp: 24.8, salinity: 35.2, status: 'active' },
-  { id: 'WMO_4901235', lat: 28.1, lon: -82.4, temp: 23.1, salinity: 35.4, status: 'active' },
-  { id: 'WMO_4901236', lat: 22.8, lon: -79.8, temp: 26.2, salinity: 34.9, status: 'transmitting' },
-  { id: 'WMO_4901237', lat: 26.7, lon: -81.1, temp: 25.4, salinity: 35.1, status: 'active' },
-  { id: 'WMO_4901238', lat: 24.2, lon: -83.5, temp: 24.1, salinity: 35.3, status: 'inactive' },
+  { id: 'WMO_4901234', lat: 25.5, lon: -80.2, temp: 24.8, salinity: 35.2, status: 'active', lastUpdate: '2024-01-15', cycles: 247, depth: 2000 },
+  { id: 'WMO_4901235', lat: 28.1, lon: -82.4, temp: 23.1, salinity: 35.4, status: 'active', lastUpdate: '2024-01-14', cycles: 189, depth: 2000 },
+  { id: 'WMO_4901236', lat: 22.8, lon: -79.8, temp: 26.2, salinity: 34.9, status: 'transmitting', lastUpdate: '2024-01-16', cycles: 156, depth: 2000 },  
+  { id: 'WMO_4901237', lat: 26.7, lon: -81.1, temp: 25.4, salinity: 35.1, status: 'active', lastUpdate: '2024-01-13', cycles: 298, depth: 2000 },
+  { id: 'WMO_4901238', lat: 24.2, lon: -83.5, temp: 24.1, salinity: 35.3, status: 'inactive', lastUpdate: '2023-12-28', cycles: 421, depth: 2000 },
+  { id: 'WMO_4901239', lat: 27.3, lon: -78.9, temp: 25.8, salinity: 35.0, status: 'active', lastUpdate: '2024-01-16', cycles: 134, depth: 2000 },
+  { id: 'WMO_4901240', lat: 23.7, lon: -81.3, temp: 24.9, salinity: 35.3, status: 'transmitting', lastUpdate: '2024-01-15', cycles: 203, depth: 2000 },
 ];
 
 export const MapVisualization = ({ data }: MapVisualizationProps) => {

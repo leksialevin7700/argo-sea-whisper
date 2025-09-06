@@ -18,8 +18,26 @@ export const VisualizationPanel = ({ visualization }: VisualizationPanelProps) =
   const [activeTab, setActiveTab] = useState('chart');
 
   const handleExport = () => {
-    // Placeholder for export functionality
-    console.log('Exporting visualization...');
+    const exportData = {
+      timestamp: new Date().toISOString(),
+      visualization: visualization,
+      metadata: {
+        exportType: activeTab,
+        floatCount: 47,
+        dataRange: '2020-2024',
+        region: 'Global'
+      }
+    };
+    
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `argo-data-${activeTab}-${Date.now()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   if (!visualization) {

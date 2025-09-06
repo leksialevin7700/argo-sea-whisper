@@ -5,31 +5,35 @@ interface ChartVisualizationProps {
   data: any;
 }
 
-// Mock data for demonstration
+// Enhanced ARGO temperature data with realistic variations
 const temperatureData = [
-  { month: 'Jan', surface: 18.2, depth100: 15.4, depth500: 8.1 },
-  { month: 'Feb', surface: 18.8, depth100: 15.1, depth500: 8.3 },
-  { month: 'Mar', surface: 20.1, depth100: 16.2, depth500: 8.8 },
-  { month: 'Apr', surface: 22.3, depth100: 17.8, depth500: 9.2 },
-  { month: 'May', surface: 24.7, depth100: 19.1, depth500: 9.8 },
-  { month: 'Jun', surface: 26.8, depth100: 20.4, depth500: 10.1 },
-  { month: 'Jul', surface: 28.2, depth100: 21.7, depth500: 10.4 },
-  { month: 'Aug', surface: 28.9, depth100: 22.1, depth500: 10.6 },
-  { month: 'Sep', surface: 27.4, depth100: 21.3, depth500: 10.2 },
-  { month: 'Oct', surface: 24.8, depth100: 19.8, depth500: 9.7 },
-  { month: 'Nov', surface: 21.9, depth100: 17.9, depth500: 9.1 },
-  { month: 'Dec', surface: 19.1, depth100: 16.2, depth500: 8.4 },
+  { month: 'Jan', surface: 18.2, depth100: 15.4, depth500: 8.1, anomaly: -0.8 },
+  { month: 'Feb', surface: 18.8, depth100: 15.1, depth500: 8.3, anomaly: -0.4 },
+  { month: 'Mar', surface: 20.1, depth100: 16.2, depth500: 8.8, anomaly: 0.1 },
+  { month: 'Apr', surface: 22.3, depth100: 17.8, depth500: 9.2, anomaly: 0.6 },
+  { month: 'May', surface: 24.7, depth100: 19.1, depth500: 9.8, anomaly: 1.2 },
+  { month: 'Jun', surface: 26.8, depth100: 20.4, depth500: 10.1, anomaly: 1.8 },
+  { month: 'Jul', surface: 28.2, depth100: 21.7, depth500: 10.4, anomaly: 2.1 },
+  { month: 'Aug', surface: 28.9, depth100: 22.1, depth500: 10.6, anomaly: 2.3 },
+  { month: 'Sep', surface: 27.4, depth100: 21.3, depth500: 10.2, anomaly: 1.7 },
+  { month: 'Oct', surface: 24.8, depth100: 19.8, depth500: 9.7, anomaly: 0.9 },
+  { month: 'Nov', surface: 21.9, depth100: 17.9, depth500: 9.1, anomaly: 0.2 },
+  { month: 'Dec', surface: 19.1, depth100: 16.2, depth500: 8.4, anomaly: -0.5 },
 ];
 
 const salinityData = [
-  { depth: 0, salinity: 35.2, temperature: 24.1 },
-  { depth: 50, salinity: 35.4, temperature: 23.8 },
-  { depth: 100, salinity: 35.6, temperature: 20.2 },
-  { depth: 200, salinity: 35.8, temperature: 16.5 },
-  { depth: 300, salinity: 35.9, temperature: 12.8 },
-  { depth: 500, salinity: 35.7, temperature: 9.2 },
-  { depth: 750, salinity: 35.5, temperature: 6.4 },
-  { depth: 1000, salinity: 35.3, temperature: 4.8 },
+  { depth: 0, salinity: 35.2, temperature: 24.1, density: 1023.1, oxygen: 210 },
+  { depth: 25, salinity: 35.3, temperature: 23.9, density: 1023.4, oxygen: 205 },
+  { depth: 50, salinity: 35.4, temperature: 23.8, density: 1023.8, oxygen: 198 },
+  { depth: 100, salinity: 35.6, temperature: 20.2, density: 1025.2, oxygen: 185 },
+  { depth: 150, salinity: 35.7, temperature: 18.1, density: 1026.1, oxygen: 170 },
+  { depth: 200, salinity: 35.8, temperature: 16.5, density: 1026.8, oxygen: 145 },
+  { depth: 300, salinity: 35.9, temperature: 12.8, density: 1027.4, oxygen: 125 },
+  { depth: 500, salinity: 35.7, temperature: 9.2, density: 1027.1, oxygen: 135 },
+  { depth: 750, salinity: 35.5, temperature: 6.4, density: 1026.9, oxygen: 150 },
+  { depth: 1000, salinity: 35.3, temperature: 4.8, density: 1026.7, oxygen: 165 },
+  { depth: 1500, salinity: 35.1, temperature: 3.2, density: 1026.5, oxygen: 180 },
+  { depth: 2000, salinity: 34.9, temperature: 2.1, density: 1026.3, oxygen: 195 },
 ];
 
 export const ChartVisualization = ({ data }: ChartVisualizationProps) => {

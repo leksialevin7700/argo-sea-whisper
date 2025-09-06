@@ -8,23 +8,23 @@ interface QuerySuggestionsProps {
 const suggestions = [
   {
     icon: Thermometer,
-    label: 'Temperature Trends',
-    query: 'Show me temperature trends in the Atlantic Ocean over the last 5 years'
+    label: 'North Atlantic Trends',
+    query: 'Show temperature trends in the North Atlantic over 2023 with anomaly analysis'
   },
   {
     icon: Droplets,
-    label: 'Salinity Analysis',
-    query: 'Compare salinity levels between the Arabian Sea and Bay of Bengal'
+    label: 'Basin Comparison',
+    query: 'Compare salinity between Pacific and Atlantic basins with statistical significance'
   },
   {
     icon: MapPin,
-    label: 'Regional Data',
-    query: 'Show ARGO float locations and measurements in the Pacific Ocean'
+    label: 'Mediterranean Floats',
+    query: 'Display ARGO float trajectories in the Mediterranean with T-S profiles'
   },
   {
     icon: TrendingUp,
-    label: 'Depth Profiles',
-    query: 'Generate depth profiles for temperature and salinity in the Mediterranean'
+    label: 'Seasonal Analysis',
+    query: 'Analyze seasonal temperature variations at 200m depth across major basins'
   }
 ];
 
