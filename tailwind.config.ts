@@ -58,6 +58,18 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
+      backgroundImage: {
+        'ocean-gradient': 'var(--ocean-gradient)',
+        'depth-gradient': 'var(--depth-gradient)',
+        'surface-gradient': 'var(--surface-gradient)',
+      },
+      animation: {
+        'wave': 'wave var(--wave-duration) ease-in-out infinite',
+        'float': 'float var(--float-duration) ease-in-out infinite',
+        'data-pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -80,10 +92,14 @@ export default {
             height: "0",
           },
         },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        wave: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
       },
     },
   },
