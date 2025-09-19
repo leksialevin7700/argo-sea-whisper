@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ChatInterface } from './chat/ChatInterface';
 import { VisualizationPanel } from './visualization/VisualizationPanel';
 import { Header } from './Header';
 import { QuerySuggestions } from './chat/QuerySuggestions';
 import oceanHero from '@/assets/ocean-hero.jpg';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { History, User, Bot } from 'lucide-react';
 
 export interface Message {
   id: string;
@@ -17,14 +21,26 @@ export interface Message {
 }
 
 export const FloatChat = () => {
+  const STORAGE_KEY = 'floatchat:messages:v1';
+
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: 'Welcome to FloatChat! I\'m your AI assistant for exploring ARGO Ocean Data. Ask me about temperature trends, salinity measurements, or any oceanographic patterns you\'d like to investigate.',
+      content:
+        "Welcome to FloatChat! I'm your AI assistant for exploring ARGO Ocean Data. Ask me about temperature trends, salinity measurements, or any oceanographic patterns you'd like to investigate.",
       type: 'assistant',
       timestamp: new Date(),
-    }
+    },
   ]);
+
+  useEffect(() => {
+    // Ensure any previous persisted chats are cleared on refresh/load
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {}
+  }, []);
+
+  const storedMessages = useMemo(() => messages.slice().reverse(), [messages]);
   
   const [activeVisualization, setActiveVisualization] = useState<any>(null);
 
@@ -99,7 +115,7 @@ export const FloatChat = () => {
   };
 
   return (
-    <div className="min-h-screen bg-surface-gradient">
+    <div className="bg-transparent">
       {/* Hero Section */}
       <div className="relative h-32 overflow-hidden">
         <img 
@@ -119,12 +135,48 @@ export const FloatChat = () => {
       </div>
 
       {/* Main Interface */}
-      <div className="container mx-auto px-4 py-6 max-w-7xl">
+      <div className="container mx-auto px-0 py-6 max-w-7xl">
         <Header />
         
         {/* Query Suggestions */}
-        <div className="mb-6">
+        <div className="mb-6 flex items-center justify-between">
           <QuerySuggestions onSuggestionClick={handleSendMessage} />
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon" title="View chat history">
+                <History className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[380px] sm:w-[420px]">
+              <SheetHeader>
+                <SheetTitle>Recent Chats</SheetTitle>
+              </SheetHeader>
+              <div className="mt-4">
+                <ScrollArea className="h-[80vh] pr-4">
+                  <div className="space-y-3">
+                    {storedMessages.length === 0 && (
+                      <div className="text-sm text-muted-foreground">No chats yet.</div>
+                    )}
+                    {storedMessages.map((m) => (
+                      <div key={m.id} className="flex items-start gap-3 rounded-md border p-3">
+                        {m.type === 'user' ? (
+                          <User className="h-4 w-4 mt-1 text-primary" />
+                        ) : (
+                          <Bot className="h-4 w-4 mt-1 text-muted-foreground" />
+                        )}
+                        <div>
+                          <div className="text-xs text-muted-foreground">
+                            {m.timestamp.toLocaleString()}
+                          </div>
+                          <div className="text-sm whitespace-pre-wrap break-words">{m.content}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </ScrollArea>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
 
         {/* Dual Pane Layout */}
